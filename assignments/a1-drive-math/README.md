@@ -100,7 +100,7 @@ outputs into your pull request description.
 
 ## Submitting
 
-1. Create a branch named `a1-drive-math`
+1. Create a branch named `a1-drive-math-<yourname>`
 2. Put your file at `students/<yourname>/assignments/a1-drive-math/DriveMath.java`
 3. Commit, push, and open a pull request titled `A1 - Your Name`
 4. In the description, answer: what does it do, how did you test it, what got

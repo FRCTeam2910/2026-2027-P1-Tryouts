@@ -3,6 +3,12 @@ public class ArcadeDrive {
         // Driver inputs. Change these and run again to test.
         double forward = 0.8;
         double turn = 0.9;
+        double leftSpeed = forward + turn;
+        double rightSpeed = forward - turn;
+        leftSpeed = Math.max(-1.0, leftSpeed);
+        rightSpeed = Math.max(-1.0, rightSpeed);
+        System.out.println(String.format("Left: %.2f  Right: %.2f", leftSpeed, rightSpeed));
+
 
         // 1) Compute the raw motor speeds
         //    leftSpeed  = forward + turn

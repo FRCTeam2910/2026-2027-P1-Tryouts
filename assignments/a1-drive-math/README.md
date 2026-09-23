@@ -88,15 +88,15 @@ outputs into your pull request description.
 
 ## Acceptance criteria
 
-- [ ] Runs with `java DriveMath.java` in a fresh Codespace, with no errors
-- [ ] Uses at least one `int`, one `double`, one `boolean`, and one `String`
-- [ ] Both motor speeds are clamped, not just the one that overflowed in the
+- [ done] Runs with `java DriveMath.java` in a fresh Codespace, with no errors
+- [ done] Uses at least one `int`, one `double`, one `boolean`, and one `String`
+- [ done] Both motor speeds are clamped, not just the one that overflowed in the
       first test
-- [ ] The encoder conversion keeps the fraction: 1024 ticks reads as 0.50 rev,
+- [ done] The encoder conversion keeps the fraction: 1024 ticks reads as 0.50 rev,
       not 0
-- [ ] `isMoving` is computed with operators, with no `if` statement anywhere
-- [ ] All three test cases produce the values in the table
-- [ ] Numbers print with two decimals
+- [done] `isMoving` is computed with operators, with no `if` statement anywhere 
+- [ done] All three test cases produce the values in the table
+- [ done] Numbers print with two decimals
 
 ## Submitting
 

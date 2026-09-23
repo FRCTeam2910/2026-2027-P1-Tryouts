@@ -1,5 +1,17 @@
 public class RobotStatus {
     public static void main(String[] args) {
+        String Drivertrain = "blank";
+        int EncoderCount = 1024;
+        double BatteryVoltage = 12.4;
+        double JoystickAxis = 0.5;
+        boolean LimitSwitchPressed = true;
+        System.out.println("Drivertrain: " + Drivertrain + "; " + "EncoderCount: " + EncoderCount + "; " + " BatteryVoltage: " + BatteryVoltage + "; " + " JoystickAxis: " + JoystickAxis + "; " + " LimitSwitchPressed: " + LimitSwitchPressed);
+        System.out.println(String.format("Battery: %.2f V", BatteryVoltage));
+    }
+}
+
+
+
         // Your robot needs to report its state. Store one piece of state
         // in each of the five types, then print a readable status line.
 
@@ -19,5 +31,3 @@ public class RobotStatus {
 
         // 7) Print the battery voltage again, rounded to two decimals:
         //    System.out.println(String.format("Battery: %.2f V", batteryVolts));
-    }
-}

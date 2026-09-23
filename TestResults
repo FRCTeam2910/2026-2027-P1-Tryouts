@@ -1,0 +1,23 @@
+Clamped Turn
+Drivetrain
+Inputs: Forward=0.80 | Turn=0.90 | Battery Voltage=12.40
+Motor Speeds:  Left=1.00 | Right=-0.10
+Motor Volts:  Left=12.40 | Right=-1.24
+Encoder: 1024 Ticks = 0.50 Revs = 23.94cm
+Moving = true
+
+Straight Ahead
+Drivetrain
+Inputs: Forward=0.50 | Turn=0.00 | Battery Voltage=12.60
+Motor Speeds:  Left=0.50 | Right=0.50
+Motor Volts:  Left=6.30 | Right=6.30
+Encoder: 4096 Ticks = 2.00 Revs = 95.76cm
+Moving = true
+
+Stopped
+Drivetrain
+Inputs: Forward=0.00 | Turn=0.00 | Battery Voltage=11.80
+Motor Speeds:  Left=0.00 | Right=0.00
+Motor Volts:  Left=0.00 | Right=0.00
+Encoder: 0 Ticks = 0.00 Revs = 0.00cm
+Moving = false

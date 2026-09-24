@@ -3,8 +3,8 @@ public class DriveMath {
         // ---- Inputs. Change these to test different cases. ----
 
         String name = "Drivetrain";
-        double forward = 0.5;
-        double turn = 0.0;
+        double forward = 0.8;
+        double turn = 0.9;
         double batteryVolts = 12.4;
         int encoderTicks = 1024;
         double ticksPerRev = 2048.0;
@@ -25,9 +25,8 @@ public class DriveMath {
         double rightVolts = rightSpeed * batteryVolts;
 
         // ---- 4) Encoder to distance ----
-        // Careful: encoderTicks and ticksPerRev are both int.
-        // What happens to the fraction? How do you keep it?
-        // ticksPerRev is a double so the division keeps the fraction.
+
+        // ticksPerRev is a double so the division keeps the fraction. Could also keep ticksPerRev as int and cast it into a double
         double revolutions = encoderTicks/ticksPerRev;
         double distanceCm = revolutions * wheelCircumferenceCm;
 

@@ -43,6 +43,7 @@ public class DriveMath {
         // ---- 6) Print the report ----
         // Use String.format("%.2f", value) so numbers print with two decimals.
         // System.out.println("=== " + name + " ===");
+        // Formatting Variables
         String forwardFormatted = String.format("%.2f", forward);
         String turnFormatted = String.format("%.2f", turn);
         String batteryVoltsFormatted = String.format("%.2f", batteryVolts);

@@ -10,31 +10,40 @@ public class DriveMath {
         double wheelCircumferenceCm = 47.88;
 
         // ---- 1) Arcade drive: compute the raw speeds ----
-        // double rawLeft = ...
-        // double rawRight = ...
+        double rawLeft = forward + turn;
+        double rawRight = forward-turn;
 
         // ---- 2) Clamp both to the range -1.0 to 1.0 ----
         // Math.max(-1.0, value) gives you at least -1.0
         // Math.min(1.0, value) gives you at most 1.0
-        // double leftSpeed = Math.min(1.0, Math.max(-1.0, rawLeft));
-        // double rightSpeed = ...
+        double leftSpeed = Math.min(1.0, Math.max(-1.0, rawLeft));
+        double rightSpeed = Math.min(1.0, Math.max(-1.0, rawRight));
 
         // ---- 3) Convert speeds to volts ----
-        // double leftVolts = ...
-        // double rightVolts = ...
+        double leftVolts = leftSpeed * batteryVolts;
+        double rightVolts = rightSpeed * batteryVolts;
 
         // ---- 4) Encoder to distance ----
         // Careful: encoderTicks and ticksPerRev are both int.
         // What happens to the fraction? How do you keep it?
-        // double revolutions = ...
-        // double distanceCm = ...
+        double revolutions = (double) encoderTicks / ticksPerRev;
+        double distanceCm = revolutions * wheelCircumferenceCm;
 
         // ---- 5) Is the robot moving? ----
         // Use a comparison and a logical operator. No if statement.
-        // boolean isMoving = ...
+        boolean isMoving = leftSpeed != 0.0 || rightSpeed != 0.0;
 
         // ---- 6) Print the report ----
         // Use String.format("%.2f", value) so numbers print with two decimals.
-        // System.out.println("=== " + name + " ===");
+        System.out.printf("=== %s ===%n", name);
+        System.out.printf("Inputs: forward=%.2f, turn=%.2f, battery=%.2f V%n",
+        forward, turn, batteryVolts);
+        System.out.printf("Motor speeds: left=%.2f, right=%.2f%n",
+        leftSpeed, rightSpeed);
+        System.out.printf("Motor volts: left=%.2f V, right=%.2f V%n",
+        leftVolts, rightVolts);
+        System.out.printf("Encoder: %d ticks = %.2f rev = %.2f cm%n",
+        encoderTicks, revolutions, distanceCm);
+        System.out.printf("Moving: %b%n", isMoving);        
     }
 }

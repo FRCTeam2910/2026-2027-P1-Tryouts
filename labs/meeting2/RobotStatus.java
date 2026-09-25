@@ -4,9 +4,9 @@ public class RobotStatus {
         // in each of the five types, then print a readable status line.
 
         // 1) Declare a String for the subsystem name, for example "Drivetrain"
-
+        String str ="Drivetrain";
         // 2) Declare an int for the encoder count, for example 1024
-
+        int.RobotStatus =(1024);
         // 3) Declare a double for the battery voltage, for example 12.4
 
         // 4) Declare a double for the joystick axis, between -1.0 and 1.0

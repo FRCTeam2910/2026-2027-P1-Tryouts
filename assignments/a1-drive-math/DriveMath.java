@@ -9,35 +9,28 @@ public class DriveMath {
         int ticksPerRev = 2048;
         double wheelCircumferenceCm = 47.88;
 
-        // ---- 1) Arcade drive: compute the raw speeds ----
+        //Raw speeds of the left and right wheels
         double rawLeft = forward + turn;
         double rawRight = forward - turn;
 
-        // ---- 2) Clamp both to the range -1.0 to 1.0 ----
-        // Math.max(-1.0, value) gives you at least -1.0
-        // Math.min(1.0, value) gives you at most 1.0
+        //This clamps the speeds to the range -1.0 to 1.0
+        //Used AI to figure out how to determine leftSpeed and rightSpeed
         double leftSpeed = Math.min(1.0, Math.max(-1.0, rawLeft));
         double rightSpeed = Math.min(1.0, Math.max(-1.0, rawRight));
 
-        // ---- 3) Convert speeds to volts ----
+        //This converts the speed to volts
         double leftVolts = leftSpeed * batteryVolts;
         double rightVolts = rightSpeed * batteryVolts;
 
-        // ---- 4) Encoder to distance ----
-        // Careful: encoderTicks and ticksPerRev are both int.
-        // What happens to the fraction? How do you keep it?
+        //This shows the revolutions made by the wheels and the distance traveled
+        //Used AI to figure out how to determine revolutions and distanceCm
         double revolutions = (double) encoderTicks / ticksPerRev;
         double distanceCm = revolutions * wheelCircumferenceCm;
 
-        // ---- 5) Is the robot moving? ----
-        // Use a comparison and a logical operator. No if statement.
+        // True or false for whether the robot is moving or not
         boolean isMoving = (leftSpeed != 0.0) || (rightSpeed != 0.0);
 
-        // ---- 6) Print the report ----
-        // Use String.format("%.2f", value) so numbers print with two decimals.
-        
-        //System.out.println("Swasti Nayak's Project");
-    
+        // This code prints the report
         System.out.println(String.format("Left Speed: %.2f", leftSpeed));
         System.out.println(String.format("Right Speed: %.2f", rightSpeed));
         System.out.println(String.format("Left Volts: %.2f V", leftVolts));

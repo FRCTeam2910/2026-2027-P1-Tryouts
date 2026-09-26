@@ -9,7 +9,7 @@ public class DriveMath {
         int ticksPerRev = 2048;
         double wheelCircumferenceCm = 47.88;
 
-        //Raw speeds of the left and right wheels 
+        //Raw speeds of the left and right wheels
         double rawLeft = forward + turn;
         double rawRight = forward - turn;
 
@@ -31,6 +31,7 @@ public class DriveMath {
         boolean isMoving = (leftSpeed != 0.0) || (rightSpeed != 0.0);
 
         // This code prints the report
+        System.out.println(String.format("=== Drivetrain ==="));
         System.out.println(String.format("Left Speed: %.2f", leftSpeed));
         System.out.println(String.format("Right Speed: %.2f", rightSpeed));
         System.out.println(String.format("Left Volts: %.2f V", leftVolts));

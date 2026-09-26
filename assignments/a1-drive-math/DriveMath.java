@@ -27,10 +27,10 @@ public class DriveMath {
         double revolutions = (double) encoderTicks / ticksPerRev;
         double distanceCm = revolutions * wheelCircumferenceCm;
 
-        // True or false for whether the robot is moving or not
+        //True or false for whether the robot is moving or not
         boolean isMoving = (leftSpeed != 0.0) || (rightSpeed != 0.0);
 
-        // This code prints the report
+        //This code prints the report
         System.out.println(String.format("=== Drivetrain ==="));
         System.out.println(String.format("Left Speed: %.2f", leftSpeed));
         System.out.println(String.format("Right Speed: %.2f", rightSpeed));

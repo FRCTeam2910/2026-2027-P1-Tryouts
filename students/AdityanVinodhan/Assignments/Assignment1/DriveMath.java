@@ -1,13 +1,13 @@
 public class DriveMath {
     public static void main(String[] args) {
         // ---- Inputs. Change these to test different cases. ----
-    String name = "Drivetrain";
-    double forward = 0.5;
-    double turn = 0.0;
-    double batteryVolts = 12.6;
-    int encoderTicks = 4096;
-    int ticksPerRev = 2048;
-    double wheelCircumferenceCm = 47.88;
+        String name = "Drivetrain";
+        double forward = 0.8;
+        double turn = 0.9;
+        double batteryVolts = 12.4;
+        int encoderTicks = 1024;
+        int ticksPerRev = 2048;
+        double wheelCircumferenceCm = 47.88;
 
         // ---- 1) Arcade drive: compute the raw speeds ----
         double rawLeft = forward + turn;

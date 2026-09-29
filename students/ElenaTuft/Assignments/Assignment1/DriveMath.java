@@ -1,5 +1,3 @@
-package students.ElenaTuft.Assignments.Assignment1;
-
 public class DriveMath {
     public static void main(String[] args) {
         // ---- Inputs. Change these to test different cases. ----

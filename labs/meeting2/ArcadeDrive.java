@@ -14,9 +14,24 @@ public class ArcadeDrive {
         //    Math.max(-1.0, value) gives you at least -1.0
         //    Math.min(1.0, value) gives you at most 1.0
         //    Together: Math.min(1.0, Math.max(-1.0, value))
-        leftSpeed = Math.min(1.0, Math.max(-1.0, leftSpeed));
-        rightSpeed = Math.min(1.0, Math.max(-1.0, rightSpeed));
+        
+        // leftSpeed = Math.min(1.0, Math.max(-1.0, leftSpeed));
+        // rightSpeed = Math.min(1.0, Math.max(-1.0, rightSpeed));
 
+        if (leftSpeed < -1.0) {
+            leftSpeed = -1.0;
+        }
+        if (leftSpeed > 1.0) {
+            leftSpeed = 1.0;
+        }
+
+        if (rightSpeed < -1.0) {
+            rightSpeed = -1.0;
+        }
+        if (rightSpeed > 1.0) {
+            rightSpeed = 1.0;
+        }
+        
         // 3) Print both, rounded to two decimals:
         System.out.println(String.format("Left: %.2f  Right: %.2f", leftSpeed, rightSpeed));
     }

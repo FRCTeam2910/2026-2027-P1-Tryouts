@@ -8,33 +8,43 @@ public class DriveMath {
         int encoderTicks = 1024;
         int ticksPerRev = 2048;
         double wheelCircumferenceCm = 47.88;
+        double speedThreshold = 0.1;
 
         // ---- 1) Arcade drive: compute the raw speeds ----
-        // double rawLeft = ...
-        // double rawRight = ...
+        double rawLeft = forward + turn;
+        double rawRight = forward - turn;
 
         // ---- 2) Clamp both to the range -1.0 to 1.0 ----
-        // Math.max(-1.0, value) gives you at least -1.0
-        // Math.min(1.0, value) gives you at most 1.0
-        // double leftSpeed = Math.min(1.0, Math.max(-1.0, rawLeft));
-        // double rightSpeed = ...
+        rawLeft = Math.max(-1.0, rawLeft);
+        rawRight = Math.max(-1.0, rawRight);
+        
+        double leftSpeed = Math.min(1.0, rawLeft);
+        double rightSpeed = Math.min(1.0, rawRight);
 
         // ---- 3) Convert speeds to volts ----
-        // double leftVolts = ...
-        // double rightVolts = ...
+        double leftVolts = leftSpeed * batteryVolts;
+        double rightVolts = rightSpeed * batteryVolts;
 
         // ---- 4) Encoder to distance ----
-        // Careful: encoderTicks and ticksPerRev are both int.
-        // What happens to the fraction? How do you keep it?
-        // double revolutions = ...
-        // double distanceCm = ...
+        double revolutions = (double) encoderTicks / ticksPerRev;
+        double distanceCm = revolutions * wheelCircumferenceCm;
 
         // ---- 5) Is the robot moving? ----
-        // Use a comparison and a logical operator. No if statement.
-        // boolean isMoving = ...
+        boolean isMoving = Math.abs(leftSpeed) > speedThreshold || Math.abs(rightSpeed) > speedThreshold;
 
         // ---- 6) Print the report ----
-        // Use String.format("%.2f", value) so numbers print with two decimals.
-        // System.out.println("=== " + name + " ===");
+        String leftVoltsFormatted = String.format("%.2f", leftVolts);
+        String rightVoltsFormatted = String.format("%.2f", rightVolts);
+        System.out.println("=== " + name + " ===");
+        System.out.println("Raw Left: " + rawLeft);
+        System.out.println("Raw Right: " + rawRight);
+        System.out.println("inputs: " + forward + ", " + turn + ", " + batteryVolts);
+        System.out.println("Left Volts: " + leftVoltsFormatted + " V");
+        System.out.println("Right Volts: " + rightVoltsFormatted + " V");
+        System.out.println("Revolutions: " + revolutions);
+        System.out.println("Distance (cm): " + distanceCm);
+        System.out.println("Is Moving: " + isMoving);
+        System.out.println("Encoder Ticks: " + encoderTicks);
     }
 }
+    

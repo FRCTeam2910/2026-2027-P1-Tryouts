@@ -42,16 +42,16 @@ public class DriveMath {
         boolean isMoving = leftSpeed != 0 && rightSpeed != 0;
 
         System.out.println("=== " + name + " ===");
-        System.out.println(String.format("Turn input: %.2f", turn));
-        System.out.println(String.format("Forward input: %.2f", forward));
-        System.out.println(String.format("Raw left speed: %.2f", rawLeft));
-        System.out.println(String.format("Raw right speed: %.2f", rawRight));
-        System.out.println(String.format("Left speed (once clamped): %.2f", leftSpeed));
-        System.out.println(String.format("Right speed (once clamped): %.2f", rightSpeed));
-        System.out.println(String.format("Left voltage: %.2f V", leftVolts));
-        System.out.println(String.format("Right voltage: %.2f V", rightVolts));
-        System.out.println(String.format("Revolutions: %.2f", revolutions));
-        System.out.println(String.format("Distance traveled: %.2f", distanceCm, "cm"));
-        System.out.println(String.format("The fact that the robot is moving is %b", isMoving));
+        System.out.println(String.format("1. Turn input: %.2f", turn));
+        System.out.println(String.format("2. Forward input: %.2f", forward));
+        System.out.println(String.format("3. Raw left speed: %.2f", rawLeft));
+        System.out.println(String.format("4. Raw right speed: %.2f", rawRight));
+        System.out.println(String.format("5. Left speed (once clamped): %.2f", leftSpeed));
+        System.out.println(String.format("6. Right speed (once clamped): %.2f", rightSpeed));
+        System.out.println(String.format("7. Left voltage: %.2f V", leftVolts));
+        System.out.println(String.format("8. Right voltage: %.2f V", rightVolts));
+        System.out.println(String.format("9. Revolutions: %.2f", revolutions));
+        System.out.println(String.format("10. Distance traveled: %.2f", distanceCm, "cm"));
+        System.out.println(String.format("11. The fact that the robot is moving is %b", isMoving));
     }
 }

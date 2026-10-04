@@ -20,13 +20,13 @@ public class DriveMath {public static void main(String[] args) {
         // ---- 1) Arcade drive: compute the raw speeds ----
         double rawLeft = forward + turn;
         double rawRight = forward - turn;
+        
 
         // ---- 2) Clamp both to the range -1.0 to 1.0 ----
-        rawLeft = Math.max(-1.0, rawLeft);
-        rawRight = Math.max(-1.0, rawRight);
-        
-        double leftSpeed = Math.min(1.0, rawLeft);
-        double rightSpeed = Math.min(1.0, rawRight);
+        double highBarrierLeftSpeed = Math.min(1.0, rawLeft);
+        double leftSpeed = Math.max(-1.0, highBarrierLeftSpeed);
+        double highBarrierRightSpeed = Math.min(1.0, rawRight);
+        double rightSpeed = Math.max(-1.0, highBarrierRightSpeed);
 
         // ---- 3) Convert speeds to volts ----
         double leftVolts = leftSpeed * batteryVolts;
@@ -42,12 +42,14 @@ public class DriveMath {public static void main(String[] args) {
         // ---- 6) Print the report ----
         String leftVoltsFormatted = String.format("%.2f", leftVolts);
         String rightVoltsFormatted = String.format("%.2f", rightVolts);
+        String revolutionsFormatted = String.format("%.2f", revolutions);
+        String distanceCmFormatted = String.format("%.2f", distanceCm);
         System.out.println("=== " + name + " ===");
         System.out.println("inputs: " + forward + ", " + turn + ", " + batteryVolts);
         System.out.println("Left Volts: " + leftVoltsFormatted + " V");
         System.out.println("Right Volts: " + rightVoltsFormatted + " V");
-        System.out.println("Revolutions: " + revolutions);
-        System.out.println("Distance (cm): " + distanceCm);
+        System.out.println("Revolutions: " + revolutionsFormatted);
+        System.out.println("Distance (cm): " + distanceCmFormatted);
         System.out.println("Is Moving: " + isMoving);
         System.out.println("Encoder Ticks: " + encoderTicks);
     }

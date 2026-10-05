@@ -39,7 +39,7 @@ public class DriveMath {
         // ---- 5) Is the robot moving? ----
         // Use a comparison and a logical operator. No if statement.
         // boolean isMoving = ...
-        boolean isMoving = encoderTicks >= 1;
+        boolean isMoving = leftSpeed != 0 || rightSpeed != 0;
         // ---- 6) Print the report ----
         // Use String.format("%.2f", value) so numbers print with two decimals.
         // System.out.println("=== " + name + " ===");

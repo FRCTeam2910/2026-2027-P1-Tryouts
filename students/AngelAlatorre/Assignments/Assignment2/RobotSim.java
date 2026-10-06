@@ -1,3 +1,5 @@
+package students.AngelAlatorre.Assignments.Assignment2;
+
 public class RobotSim {
     public static void main(String[] args) {
         // ---- Inputs. Change these to test your program. ----
@@ -131,4 +133,3 @@ public class RobotSim {
         return 12.6 - (step * 0.4);
     }
 }
-

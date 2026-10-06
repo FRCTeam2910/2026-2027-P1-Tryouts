@@ -11,9 +11,9 @@ public class RobotSim {
         // own runMode method three times. The third mode is one your code
         // does not recognise, and that is deliberate.
         //
-        //   runMode("tank",   left, right, forward, turn, steps);
-        //   runMode("arcade", left, right, forward, turn, steps);
-        //   runMode("turbo",  left, right, forward, turn, steps);
+        runMode("tank",   left, right, forward, turn, steps);
+        runMode("arcade", left, right, forward, turn, steps);
+        runMode("turbo",  left, right, forward, turn, steps);
     }
 
     // Method 1: Runs the whole simulation for one mode and prints what happens.
@@ -22,10 +22,13 @@ public class RobotSim {
                         double forward, double turn, int steps) {
 
             // 1) Print the header line, for example:  === tank ===
+            System.out.println("=== " + mode + " ===");
 
             // 2) Set up this mode's state
             //    double x = 0.0, y = 0.0, heading = 0.0;
             //    double leftSpeed = 0.0, rightSpeed = 0.0;
+            double x = 0.0, y = 0.0, heading = 0.0;
+            double leftSpeed = 0.0, rightSpeed = 0.0;
 
             // 3) Work out the motor speeds with a switch on mode:
             //      tank    -> leftSpeed = left,           rightSpeed = right
@@ -33,43 +36,92 @@ public class RobotSim {
             //      default -> print "Unknown mode, motors stopped" and set both to 0.0
             //    Pass each speed through clampVoltage(...) before you use it.
             //    Do not forget break on every case.
+            switch (mode) {
+                case "tank":
+                    leftSpeed = left;
+                    rightSpeed = right;
+                    break;
+                case "arcade":
+                    leftSpeed = forward + turn;
+                    rightSpeed = forward - turn;
+                    break;
+                default:
+                    System.out.println("Unknown mode, motors stopped");
+                    leftSpeed = 0.0;
+                    rightSpeed = 0.0;
+                    break;
+            }
+
+            leftSpeed = clampVoltage(leftSpeed);
+            rightSpeed = clampVoltage(rightSpeed);
 
             // 4) Loop the steps with a for loop, from 1 up to and including steps
+            for (int step = 1; step <= steps; step++) {
 
                 // 4a) Read the battery inside a try.
                 //     If it throws, print the exception object and skip
                 //     the rest of this step with continue.
+                double battery;
+                try {
+                    battery = readBatteryVoltage(step);
+                } catch (ArithmeticException e) {
+                    System.out.println(e);
+                    continue;
+                }
 
                 // 4b) If the battery is below 11.0 volts, print
                 //     "Battery critical at X V, stopping" and leave the
                 //     loop early with break.
+                if (battery < 11.0) {
+                    System.out.println(String.format("Battery critical at %.2f V, stopping", battery));
+                    break;
+                }
 
                 // 4c) Move the robot:
                 //       x increases by leftSpeed
                 //       y increases by rightSpeed
                 //       turnRate = (rightSpeed - leftSpeed) * 45.0
                 //       heading = wrapHeading(heading + turnRate)
+                x += leftSpeed;
+                y += rightSpeed;
+                double turnRate = (rightSpeed - leftSpeed) * 45.0;
+                heading = wrapHeading(heading + turnRate);
 
                 // 4d) Print the step. Use String.format so the numbers
                 //     line up with the expected output in the README:
                 //     "Step %d: x=%.2f y=%.2f heading=%.2f battery=%.2f V"
+                System.out.println(String.format("Step %d: x=%.2f y=%.2f heading=%.2f battery=%.2f V",
+                        step, x, y, heading, battery));
+            }
 
             // 5) After the step loop, print this mode's final state:
             //    "Final: x=%.2f y=%.2f heading=%.2f"
             //    then print one blank line
+            System.out.println(String.format("Final: x=%.2f y=%.2f heading=%.2f", x, y, heading));
+            System.out.println();
     }
 
     // Method 2: Returns volts limited to the range -1.0 to 1.0.
     // Write this with if statements, the way you did in the lab.
     static double clampVoltage(double volts) {
-    
+        if (volts < -1.0) {
+            return -1.0;
+        }
+        if (volts > 1.0) {
+            return 1.0;
+        }
+        return volts;
     }
 
     // Method 3: Returns the angle wrapped into the range 0 to 359.
     // 400 becomes 40,  -20 becomes 340,  360 becomes 0
     // The % operator and one if is all you need.
     static double wrapHeading(double angle) {
-
+        double result = angle % 360.0;
+        if (result < 0) {
+            result += 360.0;
+        }
+        return result;
     }
 
     // Method 4: Already written for you. Do not change it.

@@ -5,8 +5,8 @@ public class ArcadeDrive {
         double turn = 0.9;
 
         // 1) Compute the raw motor speeds
-        //    leftSpeed  = forward + turn
-        //    rightSpeed = forward - turn
+        double leftSpeed  = forward + turn
+        double rightSpeed = forward - turn
 
         // 2) Clamp each one to the range -1.0 to 1.0.
         //    Math.max(-1.0, value) gives you at least -1.0
@@ -14,6 +14,6 @@ public class ArcadeDrive {
         //    Together: Math.min(1.0, Math.max(-1.0, value))
 
         // 3) Print both, rounded to two decimals:
-        //    System.out.println(String.format("Left: %.2f  Right: %.2f", leftSpeed, rightSpeed));
+        System.out.println(String.format("Left: %.2f  Right: %.2f", leftSpeed), rightSpeed));
     }
 }

@@ -57,7 +57,7 @@ Headings are angles, so they wrap round at 360:
 The `%` operator and one `if` is all you need.
 
 ## Expected output
-With the inputs in the main method, expected exactly would be:
+With the inputs in the main method, expected exactly would be
 
 ```
 === tank ===

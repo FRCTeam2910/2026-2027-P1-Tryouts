@@ -29,14 +29,14 @@ public class DriveMath {
 
         // ---- 5) Is the robot moving? ----
         // Use a comparison and a logical operator. No if statement.
-        boolean isMoving = distanceCm != 0;
+        boolean isMoving = (leftSpeed > 0) || (rightSpeed > 0);
 
         // ---- 6) Print the report ----
         // Use String.format("%.2f", value) so numbers print with two decimals.
         System.out.println("=== " + name + " ===");
         System.out.println("Motor speeds: left = " + String.format("%.2f", leftSpeed) + " right = " + String.format("%.2f", rightSpeed));
         System.out.println("Motor volts: left = " + String.format("%.2f", leftVolts) + " right = " + String.format("%.2f", rightVolts));
-        System.out.println("Encoder: " + encoderTicks + ", ticks = " + revolutions + ", rev = " + distanceCm);
+        System.out.println("Encoder: " + String.format("%2d.00 ticks",encoderTicks) + ", " + String.format("%.2f rev",revolutions) + ", " + String.format("%.2f cm",distanceCm));
         System.out.println("Moving: " + isMoving);
 
     }

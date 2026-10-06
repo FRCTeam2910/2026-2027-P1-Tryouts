@@ -56,9 +56,9 @@ public class RobotSim {
                         double battery = 0.0;
                         try {
                             battery = readBatteryVoltage(step);
-                        } catch (Exception e) {
+                        } catch (ArithmeticException e) {
                             System.out.println(e);
-                            break;
+                            continue;
                         }
                 // 4b) If the battery is below 11.0 volts, print
                 //     "Battery critical at X V, stopping" and leave the

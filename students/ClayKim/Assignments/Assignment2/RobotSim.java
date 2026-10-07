@@ -11,9 +11,9 @@ public class RobotSim {
         // own runMode method three times. The third mode is one your code
         // does not recognise, and that is deliberate.
         //
-        //   runMode("tank",   left, right, forward, turn, steps);
-        //   runMode("arcade", left, right, forward, turn, steps);
-        //   runMode("turbo",  left, right, forward, turn, steps);
+        runMode("tank",   left, right, forward, turn, steps);
+        runMode("arcade", left, right, forward, turn, steps);
+        runMode("turbo",  left, right, forward, turn, steps);
     }
 
     // Method 1: Runs the whole simulation for one mode and prints what happens.
@@ -22,10 +22,10 @@ public class RobotSim {
                         double forward, double turn, int steps) {
 
             // 1) Print the header line, for example:  === tank ===
-
+            System.out.println(" === " + mode + " === ");
             // 2) Set up this mode's state
-            //    double x = 0.0, y = 0.0, heading = 0.0;
-            //    double leftSpeed = 0.0, rightSpeed = 0.0;
+            double x = 0.0, y = 0.0, heading = 0.0;
+            double leftSpeed = 0.0, rightSpeed = 0.0;
 
             // 3) Work out the motor speeds with a switch on mode:
             //      tank    -> leftSpeed = left,           rightSpeed = right
@@ -33,9 +33,46 @@ public class RobotSim {
             //      default -> print "Unknown mode, motors stopped" and set both to 0.0
             //    Pass each speed through clampVoltage(...) before you use it.
             //    Do not forget break on every case.
+            
+            if (mode == "tank") {
+                leftSpeed = clampVoltage(left);
+                rightSpeed = clampVoltage(right);
+            } else if (mode == "arcade") {
+                leftSpeed = clampVoltage((forward + turn));
+                rightSpeed = clampVoltage((forward - turn));
+            } else {
+                System.out.println("Unknown mode, motors stopped");
+                leftSpeed = 0.0;
+                rightSpeed = 0.0;
+            }
 
             // 4) Loop the steps with a for loop, from 1 up to and including steps
+            for (int i = 1; i <= steps; i ++) {
+                try {
+                    
+                    int currentSteps = i;
+                    
+                    double Voltage = readBatteryVoltage(i);
+                    if (Voltage < 11.0) {
+                        System.out.println("Battery critical at " + Voltage + " V, stopping");
+                        System.out.println(String.format("Final: x=%.2f y=%.2f heading=%.2f battery=%.2f V", x, y, heading, Voltage));
 
+                        break;
+                    } else {
+                        Voltage = readBatteryVoltage(i);
+                    }
+                    
+                    x = x + leftSpeed;
+                    y = y + rightSpeed;
+                    double turnRate = (rightSpeed - leftSpeed) * 45;
+                    heading = wrapHeading(heading + turnRate);
+
+                    System.out.println(String.format("Step: %d x=%.2f y=%.2f heading=%.2f battery=%.2f V", currentSteps, x, y, heading, Voltage));
+                }
+                catch(Exception CaughtException){
+                    System.out.println(CaughtException);
+                }
+            }
                 // 4a) Read the battery inside a try.
                 //     If it throws, print the exception object and skip
                 //     the rest of this step with continue.
@@ -62,14 +99,45 @@ public class RobotSim {
     // Method 2: Returns volts limited to the range -1.0 to 1.0.
     // Write this with if statements, the way you did in the lab.
     static double clampVoltage(double volts) {
-    
+        if (volts <= 1.0 && volts >= -1.0) {
+            return volts;
+        } else if (volts > 1.0) {
+            volts = 1.0;
+            return volts;
+        } else if (volts < -1.0) {
+            volts = -1.0;
+            return volts;
+        } else {
+            return volts;
+        }
     }
 
     // Method 3: Returns the angle wrapped into the range 0 to 359.
     // 400 becomes 40,  -20 becomes 340,  360 becomes 0
     // The % operator and one if is all you need.
     static double wrapHeading(double angle) {
+        if (angle > 359 || angle < -359) {
 
+            angle = angle % 360;
+
+            if (angle < 0) {
+
+                angle = 360 + angle;
+                return angle;
+
+                } else {
+                return angle;
+            }
+        } else {
+            if (angle < 0) {
+
+                angle = 360 + angle;
+                return angle;
+
+                } else {
+                return angle;
+            }
+        }
     }
 
     // Method 4: Already written for you. Do not change it.

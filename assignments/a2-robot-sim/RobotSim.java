@@ -105,7 +105,7 @@ public class RobotSim {
     static double clampVoltage(double volts) {
         if (volts>1.0){
             return 1.0;
-        }else if (volts<1.0){
+        }else if (volts<-1.0){
             return -1.0;
         }
         return volts;
